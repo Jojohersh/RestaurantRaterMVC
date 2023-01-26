@@ -1,0 +1,52 @@
+@model IEnumerable<RestaurantListItem>
+
+ @{
+    ViewData["Title"] = "Restaurant Index";
+ }
+
+ <h1>Restaurant</h1>
+ <p>
+    @* the old way of doing links...*@
+    @* @Html.ActionLink("Create Restaurant", "Create") *@
+
+    <a asp-action="Create">Create Restaurant</a>
+ </p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Score)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @if (item.Score > 0)
+                    {
+                        @Html.DisplayFor(modelItem => item.Score)
+                    }
+                    else
+                    {
+                        <span>No Ratings yet</span>
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Restaurant", new {id = item.Id})
+                    @Html.ActionLink("Details", "Details", "Restaurant", new {id = item.Id})
+                    @Html.ActionLink("Delete", "Delete", "Restaurant", new {id = item.Id})
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

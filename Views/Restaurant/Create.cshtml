@@ -1,0 +1,33 @@
+@model RestaurantCreate
+
+@{
+    ViewData["Title"] = "Create A Restaurant";
+}
+
+<h1>Create a restaurant</h1>
+<hr>
+
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Location" class="control-label"></label>
+                <input asp-for="Location" class="form-control">
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group pt-2">
+        <input type="submit" value="Create" class="btn btn-primary">
+    </div>
+</form>
+<div>
+    @* other way... @Html.ActionLink("Back to List", "Index")*@
+    <a asp-action="Index">Back to list</a>
+</div>
