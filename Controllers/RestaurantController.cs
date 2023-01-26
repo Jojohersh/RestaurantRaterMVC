@@ -27,4 +27,13 @@ public class RestaurantController : Controller
         List<RestaurantListItem> restaurants = await _restaurantService.GetAllRestaurants();
         return View(restaurants);
     }
+    
+    [ActionName("Details")]
+    public async Task<IActionResult> Restaurant(int id)
+    {
+        RestaurantDetail restaurant = await _restaurantService.GetRestaurantById(id);
+        if (restaurant is null)
+            return RedirectToAction(nameof(Index));
+        return View(restaurant);
+    }
 }

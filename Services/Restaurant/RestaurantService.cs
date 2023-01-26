@@ -32,4 +32,18 @@ public class RestaurantService : IRestaurantService
 
         return restaurants;
     }
+
+    public async Task<RestaurantDetail> GetRestaurantById(int id)
+    {
+        var restaurant = await _context.Restaurants
+            .Include(r => r.Ratings)
+            .FirstOrDefaultAsync(r => r.Id == id);
+        
+        return new RestaurantDetail {
+            Id = restaurant.Id,
+            Name = restaurant.Name,
+            Location = restaurant.Location,
+            Score = restaurant.Score
+        };
+    }
 }
