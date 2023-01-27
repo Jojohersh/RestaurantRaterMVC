@@ -1,0 +1,45 @@
+@model RatingCreate
+
+@{
+    var title = "Rate a Restaurant";
+    ViewData["Title"] = title;
+}
+
+<h1>@title</h1>
+<hr>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div class="form-group">
+                @Html.DisplayNameFor(model => model.RestaurantId)
+                @Html.EditorFor(model => Model.RestaurantId)
+                <span asp-validation-for="RestaurantId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @Html.DisplayNameFor(model => model.FoodScore)
+                @Html.EditorFor(model => model.FoodScore)
+                <span asp-validation-for="FoodScore" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @Html.DisplayNameFor(model => model.CleanlinessScore)
+                @Html.EditorFor(model => model.CleanlinessScore)
+                <span asp-validation-for="CleanlinessScore" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @Html.DisplayNameFor(model => model.AtmosphereScore)
+                @Html.EditorFor(model => model.AtmosphereScore)
+                <span asp-validation-for="AtmosphereScore" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Rate!" class="btn btn-primary">
+            </div>
+        </form>
+        <div>
+            @Html.ActionLink("Back to List", "Index");
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

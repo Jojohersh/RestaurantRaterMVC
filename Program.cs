@@ -9,7 +9,7 @@ builder.Services.AddDbContext<RestaurantDbContext>(options => options.UseSqlServ
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IRestaurantService, RestaurantService>();
-
+builder.Services.AddScoped<IRatingService, RatingService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
