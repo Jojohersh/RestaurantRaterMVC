@@ -1,0 +1,49 @@
+@model List<RatingListItem>
+
+@{
+    ViewData["Title"] = ViewBag.RestaurantName;
+}
+
+<h2>Ratings for @ViewBag.RestaurantName</h2>
+
+<div>
+    @Html.ActionLink("Rate this restaurant", "Create");
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model[0].RestaurantName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].FoodScore)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].CleanlinessScore)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].AtmosphereScore)
+        </th>
+    </tr>
+    @foreach(var rating in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(item => rating.RestaurantName)
+            </td>
+            <td>
+                @Html.DisplayFor(item => rating.FoodScore)
+            </td>
+            <td>
+                @Html.DisplayFor(item => rating.CleanlinessScore)
+            </td>
+            <td>
+                @Html.DisplayFor(item => rating.AtmosphereScore)
+            </td>
+        </tr>
+    }
+</table>
+
+<div>
+    @Html.ActionLink("Back to Index", "Index")
+</div>

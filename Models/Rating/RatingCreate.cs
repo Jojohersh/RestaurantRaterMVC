@@ -1,5 +1,6 @@
 
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 public class RatingCreate
 {
@@ -15,4 +16,5 @@ public class RatingCreate
     [Required]
     [Range(1,10)]
     public double AtmosphereScore {get; set;}
+    public IEnumerable<SelectListItem>? RestaurantOptions {get; set;}
 }

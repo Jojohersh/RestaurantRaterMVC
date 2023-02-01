@@ -1,4 +1,5 @@
 
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 public class RatingService : IRatingService
@@ -32,10 +33,20 @@ public class RatingService : IRatingService
             }).ToListAsync();
         return ratings;
     }
+
+    public async Task<IEnumerable<SelectListItem>> GetAllAvailableRestaurants()
+    {
+        IEnumerable<SelectListItem> availableRestaurants = await _context.Restaurants.Select(r => new SelectListItem() {
+            Text = r.Name,
+            Value = r.Id.ToString()
+        }).ToListAsync();
+        return availableRestaurants;
+    }
     public async Task<List<RatingListItem>> GetAllRatingsByRestaurantId(int restaurantId)
     {
         var ratings = await _context.Ratings
             .Where(r => r.RestaurantId == restaurantId)
+            .Include(r => r.Restaurant)
             .Select(r => new RatingListItem
             {
                 RestaurantName = r.Restaurant.Name,
